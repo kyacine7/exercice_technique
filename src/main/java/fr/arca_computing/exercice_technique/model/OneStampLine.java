@@ -10,6 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Setter
 @Getter
+@Data
 public class OneStampLine {
 	
 	private String origineName;

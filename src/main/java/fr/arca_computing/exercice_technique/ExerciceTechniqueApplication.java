@@ -19,11 +19,18 @@ public class ExerciceTechniqueApplication implements CommandLineRunner {
 	
 	@Override
 	public void run(String... args) throws Exception {
-//		String firstDayOfYear = "2008-12-13 23:50:11.641";
-////		firstDayOfYear = firstDayOfYear.replaceAll("T", " ");
-////		firstDayOfYear = firstDayOfYear.substring(0,firstDayOfYear.indexOf("+")) +"0000";
-//
-//		System.out.println(this.lineDataRepository.getOnInitData(firstDayOfYear).size());
+		String firstDayOfYear = "2008-12-13 23:50:11.641";
+
+		String origine_name = "*";
+//		String origine_name = "Italie";
+				
+		if (origine_name =="*" ) {
+			System.out.println("*"+this.lineDataRepository.getYearDataFrom(firstDayOfYear).size());
+		} else {
+			System.out.println("Italie"+this.lineDataRepository.getYearDataFromByOrigine(origine_name,firstDayOfYear).size());
+
+		}		
+
 	}
 
 }
