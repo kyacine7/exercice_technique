@@ -13,25 +13,25 @@ public interface LineDataRepository extends JpaRepository<LineData, Long>{
 
 	
 	@Query(value="SELECT origine_name,SUM(value) "
-			+ "FROM exercice_technique_db.line_data "
+			+ "FROM line_data "
 			+ "GROUP BY origine_name "
 			+ "ORDER BY origine_name;", nativeQuery = true)
 	List<Object[]> getOrigineNameSumByOrigine();
 	
 	@Query(value="SELECT DATE(MIN(timestamp)),DATE(MAX(timestamp)) "
-			+ "FROM exercice_technique_db.line_data;", nativeQuery = true)
+			+ "FROM line_data;", nativeQuery = true)
 	List<Object[]> getMinMaxDates(); 
 
 	
 	@Query(value="SELECT DATE(timestamp), SUM(value) " 
-			+ "FROM exercice_technique_db.line_data "
+			+ "FROM line_data "
 			+ "WHERE (DATEDIFF(timestamp, :minDay) < 365) "
 			+ "GROUP BY DATE(timestamp);", nativeQuery = true)
 	List<Object[]> getYearDataFrom(
 			@Param("minDay") String minDate);
 
 	@Query(value="SELECT DATE(timestamp), SUM(value) " 
-			+ "FROM exercice_technique_db.line_data "
+			+ "FROM line_data "
 			+ "WHERE (DATEDIFF(timestamp, :minDay) < 365) "
 			+ "AND origine_name = :origine_name " ///////////////
 			+ "GROUP BY DATE(timestamp);", nativeQuery = true)
@@ -41,13 +41,13 @@ public interface LineDataRepository extends JpaRepository<LineData, Long>{
 	
 	
 	@Query(value="SELECT origine_name " 
-			+ "FROM exercice_technique_db.line_data "
+			+ "FROM line_data "
 			+ "GROUP BY origine_name;", nativeQuery = true)
 	List<String> getOrigines();
 	
 	
 	@Query(value="SELECT DATE(timestamp), SUM(value) "
-			+ "FROM exercice_technique_db.line_data "
+			+ "FROM line_data "
 			+ "WHERE (timestamp BETWEEN (DATE(:leftLimit)) AND (DATE(:rightLimit))) "
 			+ "GROUP BY DATE(timestamp);", nativeQuery = true)
 	List<Object[]> getPeriodDatesValuesSumByDate(
@@ -55,7 +55,7 @@ public interface LineDataRepository extends JpaRepository<LineData, Long>{
 			@Param("rightLimit") String rightLimit);
 
 	@Query(value="SELECT DATE(timestamp), SUM(value) "
-			+ "FROM exercice_technique_db.line_data "
+			+ "FROM line_data "
 			+ "WHERE (timestamp BETWEEN (DATE(:leftLimit)) AND (DATE(:rightLimit))) "
 			+ "AND origine_name=':origine_name' "      /////////////
 			+ "GROUP BY DATE(timestamp);", nativeQuery = true)
@@ -66,7 +66,7 @@ public interface LineDataRepository extends JpaRepository<LineData, Long>{
 	
 	
 	@Query(value="SELECT DATE(timestamp),SUM(value) "
-			+ "FROM exercice_technique_db.line_data "
+			+ "FROM line_data "
 			+ "WHERE YEAR(line_data.timestamp)=YEAR(:timestamp) "
 			+ "GROUP BY DATE(line_data.timestamp)", nativeQuery = true)
 	List<Object[]> getDatesValuesSumByDate(@Param("timestamp") String timestamp);

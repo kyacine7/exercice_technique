@@ -84,18 +84,16 @@ public class LoadTXTtoDB {
 	@Bean
 	public ItemWriter<LineData> flatFileWriter(){
 
-		JdbcBatchItemWriter<LineData> writer = new JdbcBatchItemWriter<LineData>();
-		writer.setItemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<LineData>());
-		writer.setSql("INSERT INTO line_data(origine_name,value,timestamp) VALUES (:origineName,:value,:timestamp)");
-		writer.setDataSource(dataSource);
+		JdbcBatchItemWriter<LineData> jdbcBatchItemWriter = new JdbcBatchItemWriter<LineData>();
+		jdbcBatchItemWriter.setItemSqlParameterSourceProvider(
+				new BeanPropertyItemSqlParameterSourceProvider<LineData>());
+		jdbcBatchItemWriter.setSql(
+				"INSERT INTO line_data(origine_name,value,timestamp) "
+				+ "VALUES (:origineName,:value,:timestamp)");
+		jdbcBatchItemWriter.setDataSource(dataSource);
 		
-		return writer;
+		return jdbcBatchItemWriter;
 
-//		return new ItemWriter<LineData>() {
-//			@Override
-//			public void write(List<? extends LineData> items) throws Exception {
-//				lineDataRepository.saveAll(items);
-//			}};
 	}
 
 

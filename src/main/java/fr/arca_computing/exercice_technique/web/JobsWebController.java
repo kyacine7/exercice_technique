@@ -49,6 +49,8 @@ public class JobsWebController {
 
 		jobExecution = jobLauncher.run(job, jobParameters);
 
+		//while loop to REST PUT Processing progress
+		
 		return jobExecution.getStatus();
 	}
 	
