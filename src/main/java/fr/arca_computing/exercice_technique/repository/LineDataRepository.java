@@ -59,7 +59,7 @@ public interface LineDataRepository extends JpaRepository<LineData, Long>{
 
 	@Query(value="SELECT DATE(date), SUM(value) "
 			+ "FROM line_data "
-			+ "WHERE (date BETWEEN (DATE(:leftLimit)) AND (DATE(:rightLimit))) "
+			+ "WHERE (date BETWEEN (:leftLimit) AND (:rightLimit)) "
 			+ "AND origine_name=:origine_name "      /////////////
 			+ "GROUP BY date "
 			+ "ORDER BY date ;", nativeQuery = true)
