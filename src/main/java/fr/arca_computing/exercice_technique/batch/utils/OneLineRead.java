@@ -1,4 +1,4 @@
-package fr.arca_computing.exercice_technique.model;
+package fr.arca_computing.exercice_technique.batch.utils;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,13 +8,11 @@ import lombok.Setter;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Setter
-@Getter
 @Data
-public class OneStampLine {
+public class OneLineRead {
 	
 	private String origineName;
 	private int value;
-	private long timestamp;
+	private String timestamp;
 
 }

@@ -18,7 +18,7 @@ public interface LineDataRepository extends JpaRepository<LineData, Long>{
 	List<Object[]> getOrigineNameSumByOrigine();
 	
 	@Query(value="SELECT date,MAX(date) "
-			+ "FROM dates;", nativeQuery = true)
+			+ "FROM line_data;", nativeQuery = true)
 	List<Object[]> getMinMaxDates(); 
 
 	
